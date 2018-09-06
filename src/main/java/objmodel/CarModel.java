@@ -5,20 +5,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class CarModel {
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     private String owner;
     private String company;
     private String model;
     private String color;
     private String power;
-
 
     public CarModel() {
     }
@@ -30,6 +21,14 @@ public class CarModel {
         this.color = color;
         this.power = power;
 
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
 

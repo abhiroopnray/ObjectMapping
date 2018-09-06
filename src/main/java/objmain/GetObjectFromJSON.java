@@ -1,5 +1,6 @@
 package objmain;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import objmodel.ApiFetchModel;
 import objmodel.CarModel;
@@ -19,9 +20,24 @@ public class GetObjectFromJSON {
     public void objectToJsonCarModel() {
 
         ObjectMapper objectMapper = new ObjectMapper();
-
-        //Data add
         CarModel carModel = new CarModel("Abhishek Chakraborty", "Ford", "EcoSport", "White", "1500");
+
+        String rawJson = "{\"owner\" : \"Abhishek Chakraborty\", " +
+                "\"company\" : \"Ford\", " +
+                "\"model\" : \"EcoSport\", " +
+                "\"color\" : \"white\", " +
+                "\"power\" : \"1500\"}";
+
+        //JSON to JACKSON JsonNode
+        JsonNode jsonNode = null;
+        try {
+           jsonNode = objectMapper.readTree(rawJson);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        String ownerName = jsonNode.get("owner").asText();
+        printJacksonNodeData(ownerName);
 
         printData(carModel);
 
@@ -34,6 +50,10 @@ public class GetObjectFromJSON {
         }
     }
 
+    private void printJacksonNodeData(String jsonNode){
+        System.out.println("\n" +  "Json Node: Owner name: " + jsonNode);
+    }
+
     private void printData(CarModel carModel){
         String owner = carModel.getOwner();
         String company = carModel.getCompany();
@@ -43,4 +63,5 @@ public class GetObjectFromJSON {
 
         System.out.println("\n" + "Owner: " + owner + "\n" + "Company:" + company + "\n" + "model: " + model + "\n" + "color: " + color + "\n" + "power: " + power);
     }
+
 }
