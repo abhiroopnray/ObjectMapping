@@ -20,13 +20,20 @@ public class GetObjectFromJSON {
     public void objectToJsonCarModel() {
 
         ObjectMapper objectMapper = new ObjectMapper();
-        CarModel carModel = new CarModel("Abhishek Chakraborty", "Ford", "EcoSport", "White", "1500");
+        CarModel carModel = new CarModel();/*("Abhishek Chakraborty", "Ford",
+                "EcoSport", "White", "1500");*/
 
         String rawJson = "{\"owner\" : \"Abhishek Chakraborty\", " +
                 "\"company\" : \"Ford\", " +
                 "\"model\" : \"EcoSport\", " +
                 "\"color\" : \"white\", " +
                 "\"power\" : \"1500\"}";
+
+        carModel.setOwner("Abhishek");
+        carModel.setCompany("Ford");
+        carModel.setModel("EcoSport");
+        carModel.setColor("White");
+        carModel.setPower("1500");
 
         //JSON to JACKSON JsonNode
         JsonNode jsonNode = null;
@@ -42,7 +49,7 @@ public class GetObjectFromJSON {
         printData(carModel);
 
         try {
-            //From code
+            //Store data in file
             objectMapper.writeValue(new File("D:\\Personal\\RTFS\\ObjectMapper\\ExtraFiles\\OBJ_01_\\car.json"), carModel);
 
         } catch (IOException e) {

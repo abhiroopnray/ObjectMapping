@@ -24,7 +24,7 @@ public class GetObjectFromJsonFromAPI {
     public void fetchDataFromApi() {
         try {
 
-            //For single
+            //For single item without pagination
             apiFetchModel = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/todos/1"),
                     ApiFetchModel.class);
 
@@ -50,13 +50,13 @@ public class GetObjectFromJsonFromAPI {
                     + "\n" + "tittle: " + apiFetchModelList.get(i).getTitle()
                     + "\n" + "completed: " + apiFetchModelList.get(i).getCompleted());
         }
-        //System.out.println("\nShowing only one item. \nTotal list size: " + apiFetchModelList.size());
+        //System.out.println("\nTotal list size: " + apiFetchModelList.size());
         storeData(apiFetchModel);
     }
 
     private void storeData(ApiFetchModel apiFetchModel){
         try {
-            objectMapper.writeValue(new File("D:\\Personal\\RTFS\\ObjectMapper\\ExtraFiles\\OBJ_01_\\api_fetch.json"), apiFetchModel);
+            objectMapper.writeValue(new File("D:\\Personal\\RTFS\\ObjectMapper\\ExtraFiles\\OBJ_01_\\api_fetch.json"), apiFetchModelList);
         } catch (IOException e){
             e.printStackTrace();
         }
