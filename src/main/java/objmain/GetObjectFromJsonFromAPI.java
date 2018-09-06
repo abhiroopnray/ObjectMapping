@@ -23,7 +23,12 @@ public class GetObjectFromJsonFromAPI {
 
     public void fetchDataFromApi() {
         try {
-            apiFetchModel = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/todos/1"), ApiFetchModel.class);
+
+            //For single
+            apiFetchModel = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/todos/1"),
+                    ApiFetchModel.class);
+
+            //For list
             apiFetchModelList = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/todos/"),
                     new TypeReference<List<ApiFetchModel>>(){});
 
@@ -38,13 +43,14 @@ public class GetObjectFromJsonFromAPI {
 
     private void printAPIData() {
 
-        String id = apiFetchModel.getId();
-        String userId = apiFetchModel.getUserId();
-        String tittle = apiFetchModel.getTitle();
-        boolean completed = apiFetchModel.getCompleted();
+        for (int i = 0; i < apiFetchModelList.size(); i++) {
 
-        System.out.println("\n" + "From API: " + "\n" + "Id: " + id + "\n" + "UserId: " + userId + "\n" + "tittle: " + tittle + "\n" + "completed: " + completed);
-        System.out.println("\nShowing only one item. \nTotal list size: " + apiFetchModelList.size());
+            System.out.println("\n" + "From API: " + "\n" + "Id: " + apiFetchModelList.get(i).getId()
+                    + "\n" + "UserId: " + apiFetchModelList.get(i).getUserId()
+                    + "\n" + "tittle: " + apiFetchModelList.get(i).getTitle()
+                    + "\n" + "completed: " + apiFetchModelList.get(i).getCompleted());
+        }
+        //System.out.println("\nShowing only one item. \nTotal list size: " + apiFetchModelList.size());
         storeData(apiFetchModel);
     }
 
