@@ -1,4 +1,7 @@
-package objmain;
+package obj;
+
+import api.GetObjectFromJSON;
+import api.GetObjectFromJsonFromAPI;
 
 public class ObjectMapperMain {
 

@@ -1,4 +1,4 @@
-package objmain;
+package api;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +43,7 @@ public class GetObjectFromJsonFromAPI {
 
     private void printAPIData() {
 
-        for (int i = 0; i < apiFetchModelList.size(); i++) {
+        for (int i = 0; i < 5/*apiFetchModelList.size()*/; i++) {
 
             System.out.println("\n" + "From API: " + "\n" + "Id: " + apiFetchModelList.get(i).getId()
                     + "\n" + "UserId: " + apiFetchModelList.get(i).getUserId()
